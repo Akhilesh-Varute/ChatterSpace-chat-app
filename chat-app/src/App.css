@@ -1,123 +1,206 @@
 /* fonts and basic setup */
 * {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
     box-sizing: border-box;
-    color: #44585d;
+    color: #333;
 }
 
 body, html {
     height: 100vh;
     margin: 0;
-    background: #7F7FD5;
-    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    position: relative; /* Make the body a positioned parent */
+}
+
+body::before, html::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/bg.jpeg) center; /* Set background image */
+    /* opacity: 0.50; Adjust the alpha value (0.5 in this example) */
+    z-index: -1; /* Ensure the pseudo-element is behind other content */
+}
+
+body, html {
+    background-size: auto; /* Keep original size of the background image */
 }
 
 /* App specific styles */
 .App {
     text-align: center;
-    width: 100vw; /* Set the width to 100% of the viewport width */
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    overflow-x: hidden; /* Hide horizontal overflow */
+    width: 100vw;
+    height: calc(100vh - 90px); /* Adjusted height to accommodate inputContainer */
+    overflow-x: hidden;
 }
+
 
 .header {
     margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
-.loginBtn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4285f4;
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .comlogo{
+    width: 150px; /* Adjust the width of the image */
+  height: auto; /* Maintain aspect ratio */
+  }
+  .companyLogo {
+    width: 400px; /* Adjust the width of the company logo */
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 55px; /* Add margin at the bottom to create space */
+  }
+  
+  .loginBtn {
+    
+    padding: 10px 20px; /* Adjust padding for the login button */
+    background-color: #478043;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
-}
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Align button to the start of the flex container */
+  }
+  
+  .loginBtn:hover {
+    background-color: #0056b3;
+  }
+  
 
-.chatContainer {
+.container-fluid {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-    width: 100%; /* Set width to 100% */
+    width: 100%;
+    margin-bottom: calc(100vh - 130px); /* Adjusted to be just above the inputContainer */
 }
 
 
 
 .userInfo {
     margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #81e979;
 }
 
 .chatMessages {
-    width: 100%; /* Set width to 100% */
-    overflow-y: auto; /* Remove max-height to allow full height */
+    width: 100%;
+    overflow-y: auto;
+    flex-grow: 1;
+    z-index: 1; /* Set a higher z-index to keep it above the input container */
 }
 
 
 .message {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 10px;
 }
 
 .userAvatar {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .messageText {
     background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    max-width: 100%;
+    word-wrap: break-word;
+    border: 1px solid #ddd; /* Add border for separation */
+    margin-bottom: 10px; /* Add margin bottom to create space between messages */
 }
 
 .inputContainer {
     display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Increase the z-index to keep it above the chat messages */
     align-items: center;
+    justify-content: space-between;
     margin-top: 20px;
-    width: 300px; /* Set a fixed width for the input container */
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: transparent;
 }
+
 
 .messageInput {
     flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    max-width: calc(100% - 100px); /* Set a maximum width for the input */
-    word-wrap: break-word; /* Allow long words to break and wrap to the next line */
-}
-
-.sendBtn,
-.logoutBtn {
-    padding: 10px 20px;
-    background-color: #4285f4;
-    color: #fff;
+    padding: 12px 16px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 25px; /* Increase border-radius for rounded corners */
+    margin-right: 15px;
+    background-color: #f5f5f5; /* Lighter background color */
+    font-size: 16px;
+    outline: none; /* Remove default focus outline */
 }
 
-.sendBtn:hover,
-.logoutBtn:hover {
-    background-color: #357ae8;
+.sendBtn {
+    padding: 10px 20px; /* Adjust padding */
+    background-color: #128C7E; /* WhatsApp green */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
+
+.sendBtn:hover {
+    background-color: #075E54; /* Darker shade on hover */
+}
+
+.logoutBtn {
+    padding: 10px 20px; /* Adjust padding */
+    background-color: transparent; /* Transparent background */
+    color: #128C7E; /* WhatsApp green text color */
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.logoutBtn:hover {
+    background-color: #ECE5DD; /* Light gray background on hover */
+}
+
 
 /* Define CSS classes for sent and received messages */
 .sentMessage {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10px;
+    align-items: flex-start;
 }
 
 .receivedMessage {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    align-items: flex-start;
 }
 
 /* Style for message container */
@@ -127,34 +210,36 @@ body, html {
 
 /* Custom scrollbar styles */
 .container {
-    background-color: #fdfdfd;
     height: 100%;
     width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 4px 28px rgba(123,151,158,.25);
-    border: 1px solid #d6dee1;
     padding: 1rem;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
-
-::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
+@media screen and (max-width: 768px) {
+    .inputContainer {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+    
+    .messageInput {
+        padding: 10px 14px; /* Adjust input padding for smaller screens */
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+    
+    .sendBtn {
+        padding: 10px 16px; /* Adjust button padding for smaller screens */
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
 }
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
-}
-
-/* Additional styles */
-/* Add your additional styles here */
