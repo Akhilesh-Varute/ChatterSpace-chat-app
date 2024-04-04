@@ -1,7 +1,11 @@
 # React + Vite
 
 #ChatterSpace     
-A simple Chatting App     
+
+A simple Chatting App Deployed on vercel.app     
+
+open [ChatterSpace](https://chatterspace.vercel.app/) for visiting the Website       
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 I have used create vite project insted of create-react-app  
@@ -9,6 +13,7 @@ and also i have used yarn instead of npm for package management
 
 ## Getting Started      
 so the commads to running this application are:      
+
 npm install --global yarn (to install the yarn if not already present on your desktop)    
 yarn (for building project)
 so the commads to running this application are:    
